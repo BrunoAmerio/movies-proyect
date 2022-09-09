@@ -1,20 +1,50 @@
 {
-  "name": "movies-proyect",
-  "version": "0.1.0",
-  "private": true,
-  "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
-  },
-  "dependencies": {
-    "next": "12.3.0",
-    "react": "18.2.0",
-    "react-dom": "18.2.0"
-  },
-  "devDependencies": {
-    "eslint": "8.23.0",
-    "eslint-config-next": "12.3.0"
-  }
+	"name": "movies-proyect",
+	"version": "0.1.0",
+	"private": false,
+	"author": {
+		"name": "Bruno Amerio",
+		"email": "ameriobruno00@gmail.com"
+	},
+	"scripts": {
+		"dev": "next dev",
+		"build": "next build",
+		"start": "next start",
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"prepare": "husky install"
+	},
+	"dependencies": {
+		"axios": "^0.27.2",
+		"lodash": "^4.17.21",
+		"next": "12.3.0",
+		"prop-types": "^15.8.1",
+		"react": "18.2.0",
+		"react-dom": "18.2.0",
+		"styled-components": "^5.3.5"
+	},
+	"devDependencies": {
+		"eslint": "^8.23.0",
+		"eslint-config-next": "12.3.0",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-standard": "^17.0.0",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-n": "^15.2.5",
+		"eslint-plugin-promise": "^6.0.1",
+		"eslint-plugin-react": "^7.31.8",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*{.js, .jsx}": "eslint --cache --fix",
+		"*.{js,jsx,json,css,md,html}": [
+			"prettier --write",
+			"git add"
+		]
+	}
 }
