@@ -12,22 +12,22 @@ const MovieDetail = () => {
 	const [crew, setCrew] = useState([]);
 	const [review, setReview] = useState([]);
 	const [collection, setCollection] = useState({});
-	const [recommended, setRecommended] = useState({});
+	const [similar, setSimilar] = useState([]);
 
 	useEffect(() => {
 		if (id) {
 			GET_MOVIE_DETAIL(id).then(res => {
 				console.log(res);
-				setDetail(res.movieDetail);
+				setDetail(res.movieDetail || {});
 				setCrew(res.movieCrew);
 				setReview(res.movieReview);
-				setCollection(res.movieCollection);
-				setRecommended(res.recommendedMovies);
+				setCollection(res.movieCollection || {});
+				setSimilar(res.similarMovies);
 			});
 		}
 	}, [id]);
 
-	if (Object.values(detail).length) {
+	if (detail && Object.values(detail).length) {
 		const duration = getDuration(detail.runtime);
 
 		return (
@@ -154,8 +154,8 @@ const MovieDetail = () => {
 				</div>
 
 				<div>
-					<h2>Recomendaciónes:</h2>
-					{recommended.map(item => (
+					<h2>Peliculas similares:</h2>
+					{similar.map(item => (
 						<p key={item.id}>
 							Aqui deberíamos tener una lista de peliculas recomendas
 						</p>

@@ -2,24 +2,29 @@ import React, { useEffect, useState } from 'react';
 import styles from '../styles/Home.module.css';
 import { GET_ALL_MOVIES } from '../config/queries';
 
+import MoviesCarrousel from '../components/MoviesCarrousel/MoviesCarrousel';
 import PreviewCard from '../components/PreviewCard/PreviewCard';
 
 export default function Home() {
-	const [array, setArray] = useState([]);
+	const [mostPopular, setMostPopular] = useState([]);
+	const [trending, setTrending] = useState([]);
 
 	useEffect(() => {
 		GET_ALL_MOVIES().then(res => {
-			setArray(res.results);
-			console.log(res.results);
+			setTrending(res.trending);
+			setMostPopular(res.mostPopular);
 		});
 	}, []);
 
 	return (
 		<div className={styles.container}>
-			<h1>¿Aún no sabes que ver?</h1>
-			{array.map(item => (
-				<PreviewCard key={item.title} data={item} />
-			))}
+			<MoviesCarrousel title='Lo más visto esta semana' data={mostPopular} />
+
+			<div>
+				{trending.map(item => (
+					<PreviewCard key={item.id} data={item} />
+				))}
+			</div>
 		</div>
 	);
 }

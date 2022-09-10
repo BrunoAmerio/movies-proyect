@@ -1,24 +1,39 @@
 import axios from 'axios';
 
 export const GET_ALL_MOVIES = async () => {
-	return await axios
+	const APIKEY = process.env.NEXT_PUBLIC_API_KEY;
+	const mostPopular = await axios
 		.get(
-			`https://api.themoviedb.org/3/trending/all/week?api_key=${process.env.NEXT_PUBLIC_API_KEY}&page=1`
+			`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=es-ES&page=1`
 		)
-		.then(res => res.data);
+		.then(res => res.data.results)
+		.catch(err => console.error(err));
+
+	const trending = await axios
+		.get(
+			`https://api.themoviedb.org/3/trending/all/week?api_key=${APIKEY}&page=1&language=es-ES`
+		)
+		.then(res => res.data.results)
+		.catch(err => console.error(err));
+
+	return {
+		mostPopular,
+		trending,
+	};
 };
 
 export const GET_MOVIE_DETAIL = async id => {
+	const APIKEY = process.env.NEXT_PUBLIC_API_KEY;
 	const movieDetail = await axios
 		.get(
-			`https://api.themoviedb.org/3/movie/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-ES`
+			`https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=es-ES`
 		)
 		.then(res => res.data)
 		.catch(err => console.error(err));
 
 	const movieCrew = await axios
 		.get(
-			`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-ES
+			`https://api.themoviedb.org/3/movie/${id}/credits?api_key=${APIKEY}&language=es-ES
 	`
 		)
 		.then(res => res.data.cast.slice(0, 15))
@@ -26,7 +41,7 @@ export const GET_MOVIE_DETAIL = async id => {
 
 	const movieReview = await axios
 		.get(
-			`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1
+			`https://api.themoviedb.org/3/movie/${id}/reviews?api_key=${APIKEY}&language=en-US&page=1
 	`
 		)
 		.then(res => res.data.results.slice(0, 15))
@@ -36,14 +51,14 @@ export const GET_MOVIE_DETAIL = async id => {
 		movieDetail?.belongs_to_collection &&
 		(await axios
 			.get(
-				`https://api.themoviedb.org/3/collection/${movieDetail.belongs_to_collection.id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-ES`
+				`https://api.themoviedb.org/3/collection/${movieDetail.belongs_to_collection.id}?api_key=${APIKEY}&language=es-ES`
 			)
 			.then(res => res.data)
 			.catch(err => console.error(err)));
 
-	const recommendedMovies = await axios
+	const similarMovies = await axios
 		.get(
-			`https://api.themoviedb.org/3/movie/${id}/recommendations?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-ES&page=1`
+			`https://api.themoviedb.org/3/movie/${id}/similar?api_key=${APIKEY}&language=es-ES&page=1`
 		)
 		.then(res => res.data.results)
 		.catch(err => console.error(err));
@@ -53,7 +68,7 @@ export const GET_MOVIE_DETAIL = async id => {
 		movieCrew,
 		movieReview,
 		movieCollection,
-		recommendedMovies,
+		similarMovies,
 	};
 };
 
