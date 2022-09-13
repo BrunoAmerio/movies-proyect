@@ -9,13 +9,12 @@ import PreviewCard from '../components/PreviewCard/PreviewCard';
 import styles from '../styles/Home.module.css';
 
 export default function Home() {
-	const { mainArray, mostPopularMovies, mostPopularTvshow, setSearch } =
-		useAppContext();
+	const { mainArray, mostPopularMovies, mostPopularTvshow } = useAppContext();
 
 	const search = e => {
 		e.preventDefault();
 		const search = document.querySelector('#search').value;
-		setSearch(search);
+		window.location.href = `/search/${search}`;
 	};
 
 	if (mainArray.length && mostPopularMovies.length) {
