@@ -39,7 +39,7 @@ const AppContextProvider = ({ children }) => {
 };
 
 AppContextProvider.propTypes = {
-	children: PropTypes.object,
+	children: PropTypes.array,
 };
 
 export const useAppContext = () => {

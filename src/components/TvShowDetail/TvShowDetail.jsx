@@ -1,9 +1,9 @@
 import { useRouter } from 'next/router';
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 
-import { GET_TVSHOW_DETAIL } from '../../config/queries';
+import useGetTvDetail from '../../hooks/useGetTvDetail';
 
-import Image from 'next/image';
+// Components
 import {
 	MainContainer,
 	Background,
@@ -12,6 +12,7 @@ import {
 	Section,
 	SideBar,
 } from '../MovieDetail/styled';
+import Image from 'next/image';
 import { SeasonContainer, Episodie } from './styled';
 import Rated from '../Rated/Rated';
 import getDuration from '../../utils/getDuration';
@@ -22,22 +23,11 @@ import MoviesCarrousel from '../MoviesCarrousel/MoviesCarrousel';
 const TvShowDetail = () => {
 	const { id } = useRouter().query;
 
-	const [detail, setDetail] = useState({});
-	const [crew, setCrew] = useState([]);
-	const [review, setReview] = useState([]);
-	const [similar, setSimilar] = useState([]);
+	const { crew, detail, review, similar, error } = useGetTvDetail(id);
 
-	useEffect(() => {
-		if (id) {
-			GET_TVSHOW_DETAIL(id).then(res => {
-				console.log(res);
-				setDetail(res.tvDetail);
-				setCrew(res.tvCrew);
-				setReview(res.tvReview);
-				setSimilar(res.similarTvShow);
-			});
-		}
-	}, [id]);
+	if (error) {
+		return <h1>Algo salió mal, por favor recargue la página</h1>;
+	}
 
 	if (Object.values(detail).length) {
 		return (

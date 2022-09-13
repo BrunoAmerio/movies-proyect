@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 
-import { GET_MOVIE_DETAIL } from '../../config/queries';
+import useGetMovieDetail from '../../hooks/useGetMovieDetail';
 import getDuration from '../../utils/getDuration';
 
 import {
@@ -23,26 +23,13 @@ import MoviesCarrousel from '../MoviesCarrousel/MoviesCarrousel';
 
 const MovieDetail = () => {
 	const { id } = useRouter().query;
-	console.log(useRouter());
 
-	const [detail, setDetail] = useState({});
-	const [crew, setCrew] = useState([]);
-	const [review, setReview] = useState([]);
-	const [collection, setCollection] = useState({});
-	const [similar, setSimilar] = useState([]);
+	const { collection, crew, detail, review, similar, error } =
+		useGetMovieDetail(id);
 
-	useEffect(() => {
-		if (id) {
-			GET_MOVIE_DETAIL(id).then(res => {
-				console.log(res);
-				setDetail(res.movieDetail || {});
-				setCrew(res.movieCrew);
-				setReview(res.movieReview);
-				setCollection(res.movieCollection || {});
-				setSimilar(res.similarMovies);
-			});
-		}
-	}, [id]);
+	if (error) {
+		return <h1>Algo salió mal, por favor recargue la página</h1>;
+	}
 
 	if (detail && Object.values(detail).length) {
 		const duration = getDuration(detail.runtime);
