@@ -5,6 +5,22 @@ import Image from 'next/image';
 import { GET_MOVIE_DETAIL } from '../../config/queries';
 import getDuration from '../../utils/getDuration';
 
+import {
+	MainContainer,
+	DataContainer,
+	List,
+	SideBar,
+	CompaniesContainer,
+	Section,
+	Background,
+	CollectionContainer,
+} from './styled';
+import PreviewCard from '../PreviewCard/PreviewCard';
+import Rated from '../Rated/Rated';
+import CrewContainer from '../CrewContainer/CrewContainer';
+import ReviewContainer from '../ReviewsContainer/ReviewsContainer';
+import MoviesCarrousel from '../MoviesCarrousel/MoviesCarrousel';
+
 const MovieDetail = () => {
 	const { id } = useRouter().query;
 
@@ -30,137 +46,133 @@ const MovieDetail = () => {
 	if (detail && Object.values(detail).length) {
 		const duration = getDuration(detail.runtime);
 
+		console.log(collection);
+
 		return (
 			<div>
-				<div>
+				<MainContainer>
+					<Background
+						style={{
+							backgroundImage: `url(${process.env.NEXT_PUBLIC_IMAGE_LINK}/${detail.backdrop_path})`,
+						}}
+					>
+						<div />
+					</Background>
 					<Image
 						src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.poster_path}`}
-						height={450}
-						width={300}
+						height={400}
+						width={250}
+						objectFit={'contain'}
 					/>
-					<h1>{detail.title}</h1>
-					<h4>{detail.tagline}</h4>
 
-					{detail.homepage ? (
-						<a href={detail.homepage} rel='noreferrer' target='_blank'>
-							{detail.homepage}
-						</a>
-					) : null}
+					<DataContainer>
+						<div>
+							<h1>{detail.title}</h1>
+							<p>{detail.tagline}</p>
+						</div>
 
-					<p>Duración: {duration}hs</p>
-
-					<div>
-						<h2>Generos: </h2>
-						<ul>
+						<List>
 							{detail.genres.map(item => (
 								<li key={item.id}>{item.name}</li>
 							))}
-						</ul>
-					</div>
+						</List>
 
-					<div>
-						<p>Media de votos: {detail.vote_average}</p>
-						<p>Cantidad de votos: {detail.vote_count}</p>
-					</div>
-				</div>
-
-				<div>
-					{crew.map(item => (
-						<div key={item.id}>
-							<Image
-								src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${item.profile_path}`}
-								width={80}
-								height={90}
-							/>
-
-							<p>{item.original_name}</p>
-							<p>Rol: {item.known_for_department}</p>
-							<p>Personaje: {item.character}</p>
+						<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+							<Rated rated={detail.vote_average} fixed={true} />
+							<p>
+								{' '}
+								<strong>Votos:</strong> {detail.vote_count}
+							</p>
 						</div>
-					))}
-				</div>
-
-				<p>{detail.overview}</p>
-
-				<p>
-					Presupuesto:{' '}
-					{detail.budget > 0
-						? detail.budget.toLocaleString('en-US', {
-								style: 'currency',
-								currency: 'USD',
-								minimumFractionDigits: 0,
-						  })
-						: ' -'}
-				</p>
-
-				<p>
-					Ganancias:{' '}
-					{detail.revenue > 0
-						? detail.revenue.toLocaleString('en-US', {
-								style: 'currency',
-								currency: 'USD',
-								minimumFractionDigits: 0,
-						  })
-						: ' -'}
-				</p>
-
-				<div>
-					<h2>Productoras</h2>
-					{detail.production_companies.map(item => (
-						<div key={item.id}>
-							{item.logo_path && (
-								<Image
-									src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${item.logo_path}`}
-									height={20}
-									width={120}
-								/>
-							)}
-							<p>{item.name}</p>
-						</div>
-					))}
-				</div>
-
-				{/* Debemos tomar la propiedad backdrop_path para mostart la imagen en el fondo */}
-
-				{Object.values(collection).length && (
-					<div>
-						<h1>{collection.name}</h1>
-						<p>{collection.overview}</p>
 
 						<div>
-							{collection.parts.map(item => (
-								<p key={item.id}>
-									Aquí debemos colocar el componente PreviewCard
-								</p>
-							))}
+							<p>
+								<strong>Duración:</strong> {duration}hs
+							</p>
+
+							<p>{detail.overview}</p>
 						</div>
-					</div>
-				)}
+					</DataContainer>
+				</MainContainer>
 
-				<div>
-					<h2>¿Que opina la gente?</h2>
-					<div>
-						{review.map(item => (
-							<div key={item.id}>
-								<div>
-									<p>
-										<strong> {item.author}</strong>
-									</p>
+				<Section>
+					<div style={{ width: '83%' }}>
+						<CrewContainer data={crew} />
+
+						{Object.values(collection).length && (
+							<CollectionContainer>
+								<Background
+									style={{
+										backgroundImage: `url(${process.env.NEXT_PUBLIC_IMAGE_LINK}${collection.backdrop_path})`,
+									}}
+								>
+									<div />
+								</Background>
+
+								<div className='mainContainer'>
+									<h1>{collection.name}</h1>
+									<p>{collection.overview}</p>
 								</div>
-								<p>{item.content}</p>
-							</div>
-						))}
-					</div>
-				</div>
 
-				<div>
-					<h2>Peliculas similares:</h2>
-					{similar.map(item => (
-						<p key={item.id}>
-							Aqui deberíamos tener una lista de peliculas recomendas
+								<div className='cardContainer'>
+									{collection.parts.map(item => (
+										<PreviewCard key={item.id} data={item} />
+									))}
+								</div>
+							</CollectionContainer>
+						)}
+
+						<ReviewContainer reviews={review} />
+
+						<MoviesCarrousel
+							title='Peliculas similares'
+							data={similar}
+							redirect={'movies'}
+						/>
+					</div>
+
+					<SideBar>
+						<p>
+							Presupuesto:{' '}
+							{detail.budget > 0
+								? detail.budget.toLocaleString('en-US', {
+										style: 'currency',
+										currency: 'USD',
+										minimumFractionDigits: 0,
+								  })
+								: ' -'}
 						</p>
-					))}
-				</div>
+
+						<p>
+							Ganancias:{' '}
+							{detail.revenue > 0
+								? detail.revenue.toLocaleString('en-US', {
+										style: 'currency',
+										currency: 'USD',
+										minimumFractionDigits: 0,
+								  })
+								: ' -'}
+						</p>
+
+						<h2>Compañias</h2>
+						<CompaniesContainer>
+							{detail.production_companies.map(item => (
+								<div key={item.id}>
+									{item.logo_path && (
+										<Image
+											src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${item.logo_path}`}
+											height={50}
+											width={100}
+										/>
+									)}
+									<p>{item.name}</p>
+								</div>
+							))}
+						</CompaniesContainer>
+					</SideBar>
+				</Section>
+
+				{/* Debemos tomar la propiedad backdrop_path para mostart la imagen en el fondo */}
 			</div>
 		);
 	}

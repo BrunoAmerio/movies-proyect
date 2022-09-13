@@ -5,18 +5,17 @@ export const Inner = styled.div`
 	width: 100%;
 	height: 100%;
 	text-align: center;
-	transition: transform 0.6s;
+	transition: transform 0.4s;
 	transform-style: preserve-3d;
-	box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
 `;
 
 export const Container = styled.div`
-	width: 200px;
-	min-width: 200px;
+	width: 180px;
+	min-width: 180px;
 	height: 280px;
 	min-height: 280px;
-	scroll-snap-align: end;
 
+	scroll-snap-align: end;
 	perspective: 1000px;
 	margin-bottom: 20px;
 
@@ -37,11 +36,15 @@ export const Back = styled.div`
 	position: absolute;
 	width: 100%;
 	height: 100%;
-	color: white;
-	transform: rotateY(180deg);
+	overflow: auto;
+
+	padding: 10px 0px;
+	border-radius: 8px;
+	background-color: #f8f8f8;
+	color: black;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
-	overflow: auto;
+	transform: rotateY(180deg);
 	cursor: default;
 
 	&::-webkit-scrollbar {
@@ -58,5 +61,5 @@ export const Back = styled.div`
 `;
 
 export const Title = styled.h4`
-	margin: 15px 0px 0px 0px;
+	margin: 5px 0px 0px 0px;
 `;

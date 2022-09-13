@@ -3,25 +3,29 @@ import PropTypes from 'prop-types';
 import Image from 'next/image';
 
 import { Container, Inner, Back, Front, Title } from './styled';
-import Rated from './Rated/Rated';
+import Rated from '../Rated/Rated';
 
-const PreviewCard = ({ data }) => {
-	const redirect = () => {
-		if (data.media_type === 'movie') {
+const PreviewCard = ({ data, redirect }) => {
+	const goTo = () => {
+		if (redirect) {
+			window.location.href = `/${redirect}/${data.id}`;
+		} else if (data.media_type === 'movie') {
 			window.location.href = `/movie/${data.id}`;
 		} else {
 			window.location.href = `/tv/${data.id}`;
 		}
+
+		// window.location.href = `/details/${data.id}`;
 	};
 
 	return (
-		<Container onClick={redirect}>
+		<Container onClick={goTo}>
 			<Inner>
 				<Front>
 					<Image
 						src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${data.poster_path}`}
-						height={180}
-						width={130}
+						height={200}
+						width={150}
 					/>
 					<Title>{data.title || data.name}</Title>
 					<p style={{ margin: 0 }}>
@@ -31,7 +35,7 @@ const PreviewCard = ({ data }) => {
 				</Front>
 
 				<Back className='card-back'>
-					<p>{data.overview}</p>
+					<p style={{ margin: 'auto', width: '90%' }}>{data.overview}</p>
 				</Back>
 			</Inner>
 		</Container>
@@ -44,6 +48,7 @@ const PreviewCard = ({ data }) => {
 
 PreviewCard.propTypes = {
 	data: PropTypes.object,
+	redirect: PropTypes.string,
 };
 
 export default PreviewCard;

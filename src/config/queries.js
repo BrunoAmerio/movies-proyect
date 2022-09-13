@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-export const GET_ALL_MOVIES = async () => {
-	const APIKEY = process.env.NEXT_PUBLIC_API_KEY;
-	const mostPopular = await axios
+const APIKEY = process.env.NEXT_PUBLIC_API_KEY;
+
+export const GET_ALL = async () => {
+	const mostPopularMovies = await axios
 		.get(
 			`https://api.themoviedb.org/3/movie/popular?api_key=${APIKEY}&language=es-ES&page=1`
 		)
@@ -16,14 +17,21 @@ export const GET_ALL_MOVIES = async () => {
 		.then(res => res.data.results)
 		.catch(err => console.error(err));
 
+	const mostPopularTvshow = await axios
+		.get(
+			`https://api.themoviedb.org/3/tv/popular?api_key=${APIKEY}&language=es-ES&page=1`
+		)
+		.then(res => res.data.results)
+		.catch(err => console.error(err));
+
 	return {
-		mostPopular,
+		mostPopularMovies,
 		trending,
+		mostPopularTvshow,
 	};
 };
 
 export const GET_MOVIE_DETAIL = async id => {
-	const APIKEY = process.env.NEXT_PUBLIC_API_KEY;
 	const movieDetail = await axios
 		.get(
 			`https://api.themoviedb.org/3/movie/${id}?api_key=${APIKEY}&language=es-ES`
@@ -75,20 +83,20 @@ export const GET_MOVIE_DETAIL = async id => {
 export const GET_TVSHOW_DETAIL = async id => {
 	const tvDetail = await axios
 		.get(
-			`https://api.themoviedb.org/3/tv/${id}?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-ES `
+			`https://api.themoviedb.org/3/tv/${id}?api_key=${APIKEY}&language=es-ES `
 		)
 		.then(res => res.data);
 
 	const tvCrew = await axios
 		.get(
-			`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=es-ES
+			`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${APIKEY}&language=es-ES
 	`
 		)
 		.then(res => res.data);
 
 	const tvReview = await axios
 		.get(
-			`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${process.env.NEXT_PUBLIC_API_KEY}&language=en-US&page=1
+			`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${APIKEY}&language=en-US&page=1
 	`
 		)
 		.then(res => res.data);
