@@ -25,7 +25,10 @@ const CrewContainer = ({ data }) => {
 
 								<div>
 									<p>{item.original_name}</p>
-									<p>{item.character}</p>
+									<p>
+										{' '}
+										<strong>{item.character}</strong>
+									</p>
 								</div>
 							</Card>
 						) : null;

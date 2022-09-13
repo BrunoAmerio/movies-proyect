@@ -57,9 +57,13 @@ export const SideBar = styled.section`
 	gap: 0px;
 	text-align: center;
 	grid-column: 2;
+	padding-top: 40px;
+	margin: 0px auto;
+	align-items: center;
 
 	p {
 		margin: 0px;
+		margin-bottom: 10px;
 	}
 `;
 

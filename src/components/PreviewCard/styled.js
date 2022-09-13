@@ -40,8 +40,7 @@ export const Back = styled.div`
 
 	padding: 10px 0px;
 	border-radius: 8px;
-	background-color: #f8f8f8;
-	color: black;
+	color: white;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	transform: rotateY(180deg);

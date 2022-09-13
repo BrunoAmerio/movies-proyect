@@ -1,33 +1,35 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import { GET_ALL } from '../config/queries';
+import { useAppContext } from '../context/appContext';
 
 // Components
 import MoviesCarrousel from '../components/MoviesCarrousel/MoviesCarrousel';
 import PreviewCard from '../components/PreviewCard/PreviewCard';
 
 import styles from '../styles/Home.module.css';
+
 export default function Home() {
-	const [trending, setTrending] = useState([]);
-	const [mostPopularMovies, setMostPopularMovies] = useState([]);
-	const [mostPopularTvshow, setMostPopularTvshow] = useState([]);
+	const { mainArray, mostPopularMovies, mostPopularTvshow, setSearch } =
+		useAppContext();
 
-	useEffect(() => {
-		GET_ALL().then(res => {
-			setTrending(res.trending);
-			setMostPopularMovies(res.mostPopularMovies);
-			setMostPopularTvshow(res.mostPopularTvshow);
-		});
-	}, []);
+	const search = e => {
+		e.preventDefault();
+		const search = document.querySelector('#search').value;
+		setSearch(search);
+	};
 
-	console.log(mostPopularMovies);
-
-	if (trending.length && mostPopularMovies.length) {
+	if (mainArray.length && mostPopularMovies.length) {
 		return (
 			<div className={styles.container}>
-				<div>
-					<input type='text' placeholder='Busque peliculas o series!' />
-				</div>
+				<InputContainer>
+					<form onSubmit={search}>
+						<input
+							type='text'
+							placeholder='Busque peliculas o series!'
+							id='search'
+						/>
+					</form>
+				</InputContainer>
 
 				<MoviesCarrousel
 					title='Peliculas más vistas esta semana'
@@ -44,7 +46,7 @@ export default function Home() {
 					<h2>Recomendados</h2>
 
 					<MoviesContainer>
-						{trending.map(item => (
+						{mainArray.map(item => (
 							<PreviewCard key={item.id} data={item} />
 						))}
 					</MoviesContainer>
@@ -59,4 +61,21 @@ const MoviesContainer = styled.div`
 	display: grid;
 	grid-column-gap: 30px;
 	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+`;
+
+const InputContainer = styled.div`
+	width: 50%;
+	margin: auto;
+
+	input {
+		border: none;
+		border-radius: 8px;
+		height: 30px;
+		width: 100%;
+		padding: 0px 10px;
+
+		&:focus {
+			outline: none;
+		}
+	}
 `;

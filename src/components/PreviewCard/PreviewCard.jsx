@@ -34,7 +34,7 @@ const PreviewCard = ({ data, redirect }) => {
 					<Rated rated={data.vote_average} />
 				</Front>
 
-				<Back className='card-back'>
+				<Back>
 					<p style={{ margin: 'auto', width: '90%' }}>{data.overview}</p>
 				</Back>
 			</Inner>

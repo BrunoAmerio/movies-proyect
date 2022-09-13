@@ -31,6 +31,17 @@ export const GET_ALL = async () => {
 	};
 };
 
+export const SEARCH = async query => {
+	const result = await axios
+		.get(
+			`https://api.themoviedb.org/3/search/multi?api_key=${APIKEY}&language=es-ES&query=${query}&page=1&include_adult=true`
+		)
+		.then(res => res.data.results)
+		.catch(err => console.error(err));
+
+	return result;
+};
+
 export const GET_MOVIE_DETAIL = async id => {
 	const movieDetail = await axios
 		.get(

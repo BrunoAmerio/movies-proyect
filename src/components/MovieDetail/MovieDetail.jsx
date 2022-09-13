@@ -23,6 +23,7 @@ import MoviesCarrousel from '../MoviesCarrousel/MoviesCarrousel';
 
 const MovieDetail = () => {
 	const { id } = useRouter().query;
+	console.log(useRouter());
 
 	const [detail, setDetail] = useState({});
 	const [crew, setCrew] = useState([]);
@@ -45,8 +46,6 @@ const MovieDetail = () => {
 
 	if (detail && Object.values(detail).length) {
 		const duration = getDuration(detail.runtime);
-
-		console.log(collection);
 
 		return (
 			<div>
@@ -116,7 +115,7 @@ const MovieDetail = () => {
 
 								<div className='cardContainer'>
 									{collection.parts.map(item => (
-										<PreviewCard key={item.id} data={item} />
+										<PreviewCard key={item.id} data={item} redirect={'movie'} />
 									))}
 								</div>
 							</CollectionContainer>
@@ -127,7 +126,7 @@ const MovieDetail = () => {
 						<MoviesCarrousel
 							title='Peliculas similares'
 							data={similar}
-							redirect={'movies'}
+							redirect={'movie'}
 						/>
 					</div>
 
@@ -143,7 +142,11 @@ const MovieDetail = () => {
 								: ' -'}
 						</p>
 
-						<p>
+						<p
+							style={{
+								color: detail.revenue > detail.budget ? 'greem' : 'red',
+							}}
+						>
 							Ganancias:{' '}
 							{detail.revenue > 0
 								? detail.revenue.toLocaleString('en-US', {
@@ -153,6 +156,8 @@ const MovieDetail = () => {
 								  })
 								: ' -'}
 						</p>
+
+						<p>Estreno: {detail.release_date}</p>
 
 						<h2>Compañias</h2>
 						<CompaniesContainer>
