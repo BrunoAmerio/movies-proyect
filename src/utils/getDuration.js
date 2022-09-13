@@ -7,7 +7,7 @@ const getDuration = minute => {
 		minutes -= 60;
 	}
 
-	return `${hours}:${minutes}`;
+	return `${hours}:${minutes < 10 ? `0${minutes}` : minutes}`;
 };
 
 export default getDuration;

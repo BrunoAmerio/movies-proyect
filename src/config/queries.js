@@ -96,25 +96,36 @@ export const GET_TVSHOW_DETAIL = async id => {
 		.get(
 			`https://api.themoviedb.org/3/tv/${id}?api_key=${APIKEY}&language=es-ES `
 		)
-		.then(res => res.data);
+		.then(res => res.data)
+		.catch(err => console.error(err));
 
 	const tvCrew = await axios
 		.get(
 			`https://api.themoviedb.org/3/tv/${id}/credits?api_key=${APIKEY}&language=es-ES
 	`
 		)
-		.then(res => res.data);
+		.then(res => res.data.cast.slice(0, 15))
+		.catch(err => console.error(err));
 
 	const tvReview = await axios
 		.get(
 			`https://api.themoviedb.org/3/tv/${id}/reviews?api_key=${APIKEY}&language=en-US&page=1
 	`
 		)
-		.then(res => res.data);
+		.then(res => res.data.results)
+		.catch(err => console.error(err));
+
+	const similarTvShow = await axios
+		.get(
+			`https://api.themoviedb.org/3/tv/${id}/similar?api_key=${APIKEY}&language=es-ES&page=1`
+		)
+		.then(res => res.data.results)
+		.catch(err => console.error(err));
 
 	return {
 		tvDetail,
 		tvCrew,
 		tvReview,
+		similarTvShow,
 	};
 };
