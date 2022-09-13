@@ -18,14 +18,6 @@ const SearchPage = () => {
 	if (mainArray.length) {
 		return (
 			<div>
-				<div>
-					<input
-						type='text'
-						placeholder='Busque peliculas o series!'
-						id='search'
-					/>
-				</div>
-
 				<MoviesContainer>
 					{mainArray.map(item => (
 						<PreviewCard key={item.id} data={item} />
