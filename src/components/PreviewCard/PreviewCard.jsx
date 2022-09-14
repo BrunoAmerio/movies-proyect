@@ -1,9 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import { Container, Inner, Back, Front, Title } from './styled';
 import Rated from '../Rated/Rated';
+import Image from 'next/image';
 
 const PreviewCard = ({ data, redirect }) => {
 	const goTo = () => {
@@ -18,28 +19,38 @@ const PreviewCard = ({ data, redirect }) => {
 		// window.location.href = `/details/${data.id}`;
 	};
 
+	console.log(data);
+
 	return (
 		data.media_type !== 'person' && (
-			<Container onClick={goTo}>
-				<Inner>
-					<Front>
-						<Image
-							src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${data.poster_path}`}
-							height={200}
-							width={150}
-						/>
-						<Title>{data.title || data.name}</Title>
-						<p style={{ margin: 0 }}>
-							{data.release_date || data.first_air_date}
-						</p>
-						<Rated rated={data.vote_average} />
-					</Front>
+			<motion.div
+				initial={{ scale: 0 }}
+				animate={{ scale: 1 }}
+				transition={{ duration: 0.5 }}
+			>
+				<Container onClick={goTo}>
+					<Inner>
+						<Front>
+							<Image
+								src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${data.poster_path}`}
+								height={200}
+								width={150}
+							/>
+							<Title>{data.title || data.name}</Title>
+							<p style={{ margin: 0 }}>
+								{data.release_date || data.first_air_date}
+							</p>
+							<Rated rated={data.vote_average} />
+						</Front>
 
-					<Back>
-						<p style={{ margin: 'auto', width: '90%' }}>{data.overview}</p>
-					</Back>
-				</Inner>
-			</Container>
+						<Back>
+							<p style={{ margin: 'auto', width: '90%', zIndex: 1000 }}>
+								{data.overview}
+							</p>
+						</Back>
+					</Inner>
+				</Container>
+			</motion.div>
 		)
 	);
 };

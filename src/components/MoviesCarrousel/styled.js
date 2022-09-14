@@ -1,9 +1,16 @@
 import styled from 'styled-components';
 
-export const CardContainer = styled.div`
-	display: flex !important;
-	gap: 40px;
-	overflow-x: scroll;
-	overflow-y: hidden;
-	scroll-snap-type: x mandatory;
+export const Container = styled.div`
+	overflow: hidden;
+
+	.cardContainer {
+		display: flex;
+		width: fit-content;
+		align-items: center;
+		gap: 50px;
+		padding: 10px 0px;
+		border-radius: 10px;
+		background-color: #585858;
+		cursor: grab;
+	}
 `;

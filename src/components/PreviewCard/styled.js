@@ -33,10 +33,11 @@ export const Front = styled.div`
 `;
 
 export const Back = styled.div`
-	position: absolute;
+	position: relative;
 	width: 100%;
 	height: 100%;
 	overflow: auto;
+	background-color: #2248afc2;
 
 	padding: 10px 0px;
 	border-radius: 8px;
