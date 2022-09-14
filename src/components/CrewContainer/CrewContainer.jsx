@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import Proptypes from 'prop-types';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 
 import { Container, Card } from './styled';
 
@@ -8,11 +9,24 @@ import { Container, Card } from './styled';
 // Terminar la vista de las peliculas y ver en cuanto tiempo lo consigo
 
 const CrewContainer = ({ data }) => {
+	const [width, setWidth] = useState(0);
+	const carrousel = useRef();
+
+	useEffect(() => {
+		setWidth(carrousel.current.scrollWidth - carrousel.current.offsetWidth);
+	}, []);
+
 	if (Object.values(data).length) {
 		return (
-			<div>
+			<Container ref={carrousel}>
 				<h2>Reparto</h2>
-				<Container>
+				<motion.div
+					className='cardContainer'
+					whileTap={{ cursor: 'grabbing' }}
+					drag='x'
+					dragConstraints={{ right: 0, left: -width }}
+					dragMomentum={false}
+				>
 					{data.map(item => {
 						return item.known_for_department === 'Acting' ? (
 							<Card key={item.id}>
@@ -33,8 +47,8 @@ const CrewContainer = ({ data }) => {
 							</Card>
 						) : null;
 					})}
-				</Container>
-			</div>
+				</motion.div>
+			</Container>
 		);
 	}
 };

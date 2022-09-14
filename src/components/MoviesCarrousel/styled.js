@@ -7,10 +7,9 @@ export const Container = styled.div`
 		display: flex;
 		width: fit-content;
 		align-items: center;
-		gap: 50px;
+		gap: 40px;
 		padding: 10px 0px;
 		border-radius: 10px;
-		background-color: #585858;
 		cursor: grab;
 	}
 `;
