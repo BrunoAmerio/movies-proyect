@@ -6,7 +6,7 @@ export const Container = styled.div`
 	overflow-x: auto;
 	position: relative;
 	scroll-snap-type: x mandatory;
-	width: fit-content;
+	width: 100%;
 `;
 
 export const Card = styled.div`

@@ -4,6 +4,7 @@ import Image from 'next/image';
 
 import useGetMovieDetail from '../../hooks/useGetMovieDetail';
 import getDuration from '../../utils/getDuration';
+import getDate from '../../utils/getDate';
 
 import {
 	MainContainer,
@@ -44,45 +45,48 @@ const MovieDetail = () => {
 					>
 						<div />
 					</Background>
-					<Image
-						src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.poster_path}`}
-						height={400}
-						width={250}
-						objectFit={'contain'}
-					/>
 
-					<DataContainer>
-						<div>
-							<h1>{detail.title}</h1>
-							<p>{detail.tagline}</p>
-						</div>
+					<div className='dataContainer'>
+						<Image
+							src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.poster_path}`}
+							height={400}
+							width={250}
+							objectFit={'contain'}
+						/>
 
-						<List>
-							{detail.genres.map(item => (
-								<li key={item.id}>{item.name}</li>
-							))}
-						</List>
+						<DataContainer>
+							<div>
+								<h1>{detail.title}</h1>
+								<p>{detail.tagline}</p>
+							</div>
 
-						<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-							<Rated rated={detail.vote_average} fixed={true} />
-							<p>
-								{' '}
-								<strong>Votos:</strong> {detail.vote_count}
-							</p>
-						</div>
+							<List>
+								{detail.genres.map(item => (
+									<li key={item.id}>{item.name}</li>
+								))}
+							</List>
 
-						<div>
-							<p>
-								<strong>Duración:</strong> {duration}hs
-							</p>
+							<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+								<Rated rated={detail.vote_average} fixed={true} />
+								<p>
+									{' '}
+									<strong>Votos:</strong> {detail.vote_count}
+								</p>
+							</div>
 
-							<p>{detail.overview}</p>
-						</div>
-					</DataContainer>
+							<div>
+								<p>
+									<strong>Duración:</strong> {duration}hs
+								</p>
+
+								<p>{detail.overview}</p>
+							</div>
+						</DataContainer>
+					</div>
 				</MainContainer>
 
 				<Section>
-					<div style={{ width: '83%' }}>
+					<div style={{ width: '80%' }}>
 						<CrewContainer data={crew} />
 
 						{Object.values(collection).length && (
@@ -131,7 +135,7 @@ const MovieDetail = () => {
 
 						<p
 							style={{
-								color: detail.revenue > detail.budget ? 'greem' : 'red',
+								color: detail.revenue > detail.budget ? 'green' : 'red',
 							}}
 						>
 							Ganancias:{' '}
@@ -144,7 +148,10 @@ const MovieDetail = () => {
 								: ' -'}
 						</p>
 
-						<p>Estreno: {detail.release_date}</p>
+						<p>
+							{' '}
+							<strong>Estreno:</strong> {getDate(detail.release_date)}
+						</p>
 
 						<h2>Compañias</h2>
 						<CompaniesContainer>
@@ -154,7 +161,8 @@ const MovieDetail = () => {
 										<Image
 											src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${item.logo_path}`}
 											height={50}
-											width={100}
+											width={0}
+											objectFit='contain'
 										/>
 									)}
 									<p>{item.name}</p>

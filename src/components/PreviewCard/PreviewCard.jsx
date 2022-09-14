@@ -19,8 +19,6 @@ const PreviewCard = ({ data, redirect }) => {
 		// window.location.href = `/details/${data.id}`;
 	};
 
-	console.log(data);
-
 	return (
 		data.media_type !== 'person' && (
 			<motion.div

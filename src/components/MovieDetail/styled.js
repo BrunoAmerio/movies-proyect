@@ -1,10 +1,14 @@
 import styled from 'styled-components';
 
 export const MainContainer = styled.div`
-	display: flex;
-	gap: 3vw;
-	align-items: center;
 	position: relative;
+
+	.dataContainer {
+		display: flex;
+		gap: 3vw;
+		align-items: center;
+		padding-left: 15px;
+	}
 `;
 
 export const Background = styled.div`
