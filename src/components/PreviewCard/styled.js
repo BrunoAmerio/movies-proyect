@@ -37,11 +37,10 @@ export const Back = styled.div`
 	width: 100%;
 	height: 100%;
 	overflow: auto;
-	background-color: #2248afc2;
 
 	padding: 10px 0px;
 	border-radius: 8px;
-	color: white;
+	color: black;
 	-webkit-backface-visibility: hidden;
 	backface-visibility: hidden;
 	transform: rotateY(180deg);
@@ -61,5 +60,5 @@ export const Back = styled.div`
 `;
 
 export const Title = styled.h4`
-	margin: 5px 0px 0px 0px;
+	margin: 10px 0px 0px 0px;
 `;

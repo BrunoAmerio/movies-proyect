@@ -17,7 +17,7 @@ const MoviesCarrousel = ({ title, data, redirect }) => {
 	if (data.length) {
 		return (
 			<Container ref={carrousel}>
-				<h2>{title}</h2>
+				<h2 style={{ textDecoration: 'underline' }}>{title}</h2>
 
 				<motion.div
 					whileTap={{ cursor: 'grabbing' }}

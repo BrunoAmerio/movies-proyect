@@ -4,20 +4,22 @@ import PropTypes from 'prop-types';
 import { Container, Review } from './styled';
 
 const ReviewContainer = ({ reviews }) => {
-	return (
-		<Container>
-			{reviews.map(item => (
-				<Review key={item.id}>
-					<div>
-						<p>
-							<strong> {item.author}</strong>
-						</p>
-					</div>
-					<p className='content'>{item.content}</p>
-				</Review>
-			))}
-		</Container>
-	);
+	if (reviews.lenght) {
+		return (
+			<Container>
+				{reviews.map(item => (
+					<Review key={item.id}>
+						<div>
+							<p>
+								<strong> {item.author}</strong>
+							</p>
+						</div>
+						<p className='content'>{item.content}</p>
+					</Review>
+				))}
+			</Container>
+		);
+	}
 };
 
 ReviewContainer.propTypes = {

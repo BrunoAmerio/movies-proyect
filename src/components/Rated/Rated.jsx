@@ -1,39 +1,60 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-import { Container, SecondContainer } from './styled';
+import { Container } from './styled';
 
-const Rated = ({ rated, fixed }) => {
+const Rated = ({ rated, style }) => {
 	const points = String(rated).slice(0, 3);
-	const background = {
-		backgroundColor:
-			points >= 7 ? '#02a002' : points >= 5 ? '#f7b53a' : '#ff2d2d',
-	};
 
-	if (fixed) {
-		return (
-			<SecondContainer style={background}>
-				<small style={{ margin: 0 }}>
-					{points}
-					<small>%</small>{' '}
-				</small>
-			</SecondContainer>
-		);
-	}
+	const stroke = points >= 7 ? '#37c537' : points >= 5 ? '#f7b53a' : '#ff2d2d';
+	const backgroundStroke =
+		points >= 7 ? '#046304' : points >= 5 ? '#d6af65' : '#ac4c4c';
 
 	return (
-		<Container style={background}>
-			<small style={{ margin: 0 }}>
-				{points}
-				<small>%</small>{' '}
-			</small>
+		<Container className='contenedor' style={style}>
+			<div
+				className='svg'
+				style={{
+					width: '36px',
+					height: '36px',
+				}}
+			>
+				<svg width={150} height={150}>
+					<circle
+						r='15'
+						cx='18'
+						cy='18'
+						className='background'
+						style={{
+							stroke: backgroundStroke,
+						}}
+					></circle>
+					<circle
+						r='15'
+						cx='18'
+						cy='18'
+						className='progress'
+						id='progress'
+						style={{
+							stroke,
+							strokeDashoffset: `${points !== 10 ? 160 - points * 10 : 0}`,
+						}}
+					></circle>
+				</svg>
+			</div>
+
+			<div className='percentaje'>
+				<small>
+					<strong>{points}</strong>
+				</small>
+			</div>
 		</Container>
 	);
 };
 
 Rated.propTypes = {
 	rated: PropTypes.number,
-	fixed: PropTypes.bool,
+	style: PropTypes.object,
 };
 
 export default Rated;

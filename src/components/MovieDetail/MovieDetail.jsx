@@ -28,6 +28,8 @@ const MovieDetail = () => {
 	const { collection, crew, detail, review, similar, error } =
 		useGetMovieDetail(id);
 
+	console.log(review);
+
 	if (error) {
 		return <h1>Algo salió mal, por favor recargue la página</h1>;
 	}
@@ -89,7 +91,7 @@ const MovieDetail = () => {
 					<div style={{ width: '80%' }}>
 						<CrewContainer data={crew} />
 
-						{Object.values(collection).length && (
+						{Object.values(collection).length ? (
 							<CollectionContainer>
 								<Background
 									style={{
@@ -110,7 +112,7 @@ const MovieDetail = () => {
 									))}
 								</div>
 							</CollectionContainer>
-						)}
+						) : null}
 
 						<ReviewContainer reviews={review} />
 
@@ -157,14 +159,14 @@ const MovieDetail = () => {
 						<CompaniesContainer>
 							{detail.production_companies.map(item => (
 								<div key={item.id}>
-									{item.logo_path && (
+									{item.logo_path ? (
 										<Image
 											src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${item.logo_path}`}
 											height={50}
 											width={0}
 											objectFit='contain'
 										/>
-									)}
+									) : null}
 									<p>{item.name}</p>
 								</div>
 							))}

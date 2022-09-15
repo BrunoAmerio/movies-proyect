@@ -31,14 +31,18 @@ const PreviewCard = ({ data, redirect }) => {
 						<Front>
 							<Image
 								src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${data.poster_path}`}
-								height={200}
+								height={220}
 								width={150}
+								style={{ borderRadius: 10 }}
 							/>
 							<Title>{data.title || data.name}</Title>
 							<p style={{ margin: 0 }}>
 								{data.release_date || data.first_air_date}
 							</p>
-							<Rated rated={data.vote_average} />
+							<Rated
+								rated={data.vote_average}
+								style={{ position: 'absolute', bottom: '45px', left: '10px' }}
+							/>
 						</Front>
 
 						<Back>

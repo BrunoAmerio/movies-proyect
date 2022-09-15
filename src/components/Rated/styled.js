@@ -1,18 +1,25 @@
 import styled from 'styled-components';
 
 export const Container = styled.div`
-	position: absolute;
-	bottom: 70px;
-	left: 20px;
-	height: 30px;
-	width: 30px;
-	padding: 2px 3px;
+	position: relative;
+	color: white;
+	background-color: #032000;
 	border-radius: 50%;
-`;
 
-export const SecondContainer = styled.div`
-	height: 30px;
-	width: 30px;
-	padding: 2px 3px;
-	border-radius: 50%;
+	.progress {
+		fill: none;
+		stroke-width: 3;
+		stroke-dasharray: 160;
+	}
+	.background {
+		fill: none;
+		stroke-width: 2.5;
+	}
+
+	.percentaje {
+		position: absolute;
+		top: 45%;
+		left: 50%;
+		transform: translate(-50%, -50%);
+	}
 `;
