@@ -5,15 +5,30 @@ import { useAppContext } from '../context/appContext';
 // Components
 import MoviesCarrousel from '../components/MoviesCarrousel/MoviesCarrousel';
 import PreviewCard from '../components/PreviewCard/PreviewCard';
+import Image from 'next/image';
 
-import styles from '../styles/Home.module.css';
+import resting1 from '../assets/resting1.svg';
 
 export default function Home() {
 	const { mainArray, mostPopularMovies, mostPopularTvshow } = useAppContext();
 
 	if (mainArray.length && mostPopularMovies.length) {
 		return (
-			<div className={styles.container}>
+			<Container>
+				<div className='presentation'>
+					<h1>¡¡Bienvenido/a!!</h1>
+					<h3>
+						¿No sabes que ver?... <br />
+						Aquí te econtrarás con millones de películas y programas de
+						televisión por descubrir. <br />
+						¡Explorá ahora!
+					</h3>
+
+					<div className='image'>
+						<Image src={resting1} />
+					</div>
+				</div>
+
 				<div>
 					<MoviesCarrousel
 						title='Peliculas más vistas esta semana'
@@ -40,7 +55,7 @@ export default function Home() {
 						))}
 					</MoviesContainer>
 				</div>
-			</div>
+			</Container>
 		);
 	}
 	return <h1>Loading...</h1>;
@@ -49,5 +64,26 @@ export default function Home() {
 const MoviesContainer = styled.div`
 	display: grid;
 	grid-column-gap: 30px;
+	row-gap: 30px;
 	grid-template-columns: repeat(auto-fill, minmax(10rem, 1fr));
+`;
+
+const Container = styled.div`
+	padding: 0 2rem;
+
+	.presentation {
+		position: relative;
+		width: 100%;
+		background: linear-gradient(270deg, #2461fd 0%, #00c2ff 100%);
+		padding: 10px 10px 10px 50px;
+		border-radius: 0px 0px 8px 8px;
+		text-align: center;
+
+		h1,
+		h3 {
+			margin: 0;
+			color: white;
+			z-index: 100;
+		}
+	}
 `;
