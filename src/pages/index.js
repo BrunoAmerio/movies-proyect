@@ -69,8 +69,6 @@ const MoviesContainer = styled.div`
 `;
 
 const Container = styled.div`
-	padding: 0 2rem;
-
 	.presentation {
 		position: relative;
 		width: 100%;

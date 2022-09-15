@@ -31,7 +31,7 @@ const TvShowDetail = () => {
 
 	if (Object.values(detail).length) {
 		return (
-			<div>
+			<div style={{ marginTop: 40 }}>
 				<MainContainer>
 					<Background
 						style={{

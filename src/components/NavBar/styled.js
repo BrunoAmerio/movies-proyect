@@ -6,7 +6,7 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #285f92;
+	background-color: #2461fd;
 	border-radius: 0px 0px 4px 4px;
 
 	.title {

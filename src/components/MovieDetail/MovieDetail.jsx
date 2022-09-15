@@ -38,7 +38,7 @@ const MovieDetail = () => {
 		const duration = getDuration(detail.runtime);
 
 		return (
-			<div>
+			<div style={{ marginTop: 40 }}>
 				<MainContainer>
 					<Background
 						style={{
