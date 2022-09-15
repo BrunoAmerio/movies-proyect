@@ -40,46 +40,49 @@ const TvShowDetail = () => {
 					>
 						<div />
 					</Background>
-					<Image
-						src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.poster_path}`}
-						height={400}
-						width={250}
-						objectFit={'contain'}
-					/>
 
-					<DataContainer>
-						<div>
-							<h1>{detail.name}</h1>
-							<p>{detail.tagline}</p>
-						</div>
+					<div className='dataContainer'>
+						<Image
+							src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.poster_path}`}
+							height={350}
+							width={230}
+							style={{ borderRadius: 10 }}
+						/>
 
-						<List>
-							{detail.genres.map(item => (
-								<li key={item.id}>{item.name}</li>
-							))}
-						</List>
+						<DataContainer>
+							<div>
+								<h1>{detail.name}</h1>
+								<p>{detail.tagline}</p>
+							</div>
 
-						<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
-							<Rated rated={detail.vote_average} fixed={true} />
-							<p>
-								{' '}
-								<strong>Votos:</strong> {detail.vote_count}
-							</p>
-						</div>
+							<List>
+								{detail.genres.map(item => (
+									<li key={item.id}>{item.name}</li>
+								))}
+							</List>
 
-						<div>
-							<p>{detail.overview}</p>
-						</div>
-
-						<h4 style={{ margin: 0 }}>Creado por:</h4>
-						<div style={{ display: 'flex', gap: 20 }}>
-							{detail.created_by.map(item => (
-								<p key={item.id} style={{ margin: 0 }}>
-									{item.name}
+							<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+								<Rated rated={detail.vote_average} fixed={true} />
+								<p>
+									{' '}
+									<strong>Votos:</strong> {detail.vote_count}
 								</p>
-							))}
-						</div>
-					</DataContainer>
+							</div>
+
+							<div>
+								<p>{detail.overview}</p>
+							</div>
+
+							<h4 style={{ margin: 0 }}>Creado por:</h4>
+							<div style={{ display: 'flex', gap: 20 }}>
+								{detail.created_by.map(item => (
+									<p key={item.id} style={{ margin: 0 }}>
+										{item.name}
+									</p>
+								))}
+							</div>
+						</DataContainer>
+					</div>
 				</MainContainer>
 
 				<Section>
@@ -92,6 +95,7 @@ const TvShowDetail = () => {
 								src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.last_episode_to_air.still_path}`}
 								width={300}
 								height={250}
+								style={{ borderRadius: 10 }}
 							/>
 							<h3>{detail.last_episode_to_air.name}</h3>
 							<p>

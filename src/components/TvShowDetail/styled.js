@@ -10,6 +10,7 @@ export const SeasonContainer = styled.div`
 	scroll-snap-type: x mandatory;
 
 	.season {
+		width: 250px;
 		min-width: 250px;
 		max-height: 500px;
 		overflow-y: auto;

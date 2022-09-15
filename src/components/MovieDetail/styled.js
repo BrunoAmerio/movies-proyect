@@ -7,7 +7,7 @@ export const MainContainer = styled.div`
 		display: flex;
 		gap: 3vw;
 		align-items: center;
-		padding-left: 15px;
+		padding: 0px 0px 15px 15px;
 	}
 `;
 
@@ -16,7 +16,8 @@ export const Background = styled.div`
 	height: 100%;
 	position: absolute;
 	z-index: -1;
-	opacity: 0.4;
+	opacity: 0.6;
+	border-radius: 10px;
 
 	background-color: red;
 	background-repeat: no-repeat;
@@ -24,10 +25,11 @@ export const Background = styled.div`
 	background-size: 100% 100%;
 
 	div {
+		border-radius: 10px;
 		width: 100%;
 		height: 100%;
-		background-color: #4083ff;
-		opacity: 0.4;
+		background-color: #03055f;
+		opacity: 0.6;
 	}
 `;
 
@@ -94,7 +96,7 @@ export const CollectionContainer = styled.div`
 
 	.mainContainer {
 		z-index: 100;
-		padding: 0px 10px;
+		padding: 10px 10px 0px 10px;
 		margin-bottom: 50px;
 	}
 
@@ -102,6 +104,6 @@ export const CollectionContainer = styled.div`
 		display: flex;
 		justify-content: space-around;
 		width: 100%;
-		overflow: auto;
+		overflow: hidden;
 	}
 `;

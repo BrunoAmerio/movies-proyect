@@ -14,19 +14,25 @@ export default function Home() {
 	if (mainArray.length && mostPopularMovies.length) {
 		return (
 			<div className={styles.container}>
-				<MoviesCarrousel
-					title='Peliculas más vistas esta semana'
-					data={mostPopularMovies}
-					redirect={'movie'}
-				/>
-				<MoviesCarrousel
-					title='Series más vistas esta semana'
-					data={mostPopularTvshow}
-					redirect={'tv'}
-				/>
-
 				<div>
-					<h2>Recomendados</h2>
+					<MoviesCarrousel
+						title='Peliculas más vistas esta semana'
+						data={mostPopularMovies}
+						redirect={'movie'}
+					/>
+				</div>
+
+				<div style={{ marginTop: 50 }}>
+					<MoviesCarrousel
+						title='Series más vistas esta semana'
+						data={mostPopularTvshow}
+						redirect={'tv'}
+					/>
+				</div>
+
+				<div style={{ marginTop: 50 }}>
+					<h2 style={{ marginBottom: 0 }}>¿Aún no sabes que ver?</h2>
+					<p style={{ marginTop: 0 }}>Te recomendamos lo siguiente:</p>
 
 					<MoviesContainer>
 						{mainArray.map(item => (

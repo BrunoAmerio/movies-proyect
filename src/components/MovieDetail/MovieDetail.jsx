@@ -28,7 +28,7 @@ const MovieDetail = () => {
 	const { collection, crew, detail, review, similar, error } =
 		useGetMovieDetail(id);
 
-	console.log(review);
+	console.log(detail);
 
 	if (error) {
 		return <h1>Algo salió mal, por favor recargue la página</h1>;
@@ -51,9 +51,9 @@ const MovieDetail = () => {
 					<div className='dataContainer'>
 						<Image
 							src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.poster_path}`}
-							height={400}
-							width={250}
-							objectFit={'contain'}
+							height={350}
+							width={230}
+							style={{ borderRadius: 10 }}
 						/>
 
 						<DataContainer>
@@ -161,9 +161,9 @@ const MovieDetail = () => {
 								<div key={item.id}>
 									{item.logo_path ? (
 										<Image
-											src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${item.logo_path}`}
+											src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}/${item.logo_path}`}
 											height={50}
-											width={0}
+											width={100}
 											objectFit='contain'
 										/>
 									) : null}

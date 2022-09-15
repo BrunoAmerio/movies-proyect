@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import { Container, Review } from './styled';
 
 const ReviewContainer = ({ reviews }) => {
-	if (reviews.lenght) {
+	if (reviews.length) {
 		return (
 			<Container>
 				{reviews.map(item => (
