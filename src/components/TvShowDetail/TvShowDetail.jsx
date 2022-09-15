@@ -69,9 +69,7 @@ const TvShowDetail = () => {
 								</p>
 							</div>
 
-							<div>
-								<p>{detail.overview}</p>
-							</div>
+							<p className='overview'>{detail.overview}</p>
 
 							<h4 style={{ margin: 0 }}>Creado por:</h4>
 							<div style={{ display: 'flex', gap: 20 }}>
@@ -86,7 +84,7 @@ const TvShowDetail = () => {
 				</MainContainer>
 
 				<Section>
-					<div style={{ width: '83%' }}>
+					<div className='mainContainer'>
 						<CrewContainer data={crew} />
 
 						<h3 style={{ textAlign: 'center' }}> Ultimo episodio </h3>
