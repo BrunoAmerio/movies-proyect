@@ -1,36 +1,32 @@
 import styled from 'styled-components';
+import device from '../../config/mediaQueries';
 
-export const Container = styled.div`
-	min-height: 10vh;
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	justify-content: center;
-	background: linear-gradient(270deg, #2461fd 0%, #00c2ff 100%);
-	border-radius: 0px 0px 4px 4px;
-	position: relative;
+export const Logo = styled.div`
+	width: 50px;
+	position: absolute;
+	left: 20px;
+	top: 50%;
+	transform: translateY(-50%);
+	cursor: pointer;
 
-	.title {
-		width: 50%;
-
-		h1,
-		h3 {
-			margin: 0;
-			color: white;
-		}
+	@media ${device.mobileL} {
+		width: 25px;
+		position: relative !important;
+		transform: translateY(0%);
 	}
 `;
 
 export const InputContainer = styled.div`
 	width: 50%;
+	min-width: 200px;
 	margin: auto;
 	position: relative;
 
 	input {
-		height: 40px;
-		width: 100%;
-		min-width: 300px;
-		padding: 0px 10px;
+		height: 35px;
+		width: 10%;
+		min-width: 200px;
+		padding: 0px 35px 0px 10px;
 
 		background-color: white;
 		border: none;
@@ -48,6 +44,7 @@ export const InputContainer = styled.div`
 		justify-content: center;
 
 		width: 10%;
+		min-width: 30px;
 		height: 100%;
 
 		position: absolute;
@@ -62,11 +59,23 @@ export const InputContainer = styled.div`
 	}
 `;
 
-export const Logo = styled.div`
-	width: 50px;
-	position: absolute;
-	left: 20px;
-	top: 40%;
-	transform: translateY(-50%);
-	cursor: pointer;
+export const Container = styled.div`
+	min-height: 10vh;
+	display: flex;
+	align-items: center;
+	justify-content: space-around;
+	align-items: center;
+	background: linear-gradient(270deg, #2461fd 0%, #00c2ff 100%);
+	border-radius: 0px 0px 4px 4px;
+	position: relative;
+
+	.title {
+		width: 50%;
+
+		h1,
+		h3 {
+			margin: 0;
+			color: white;
+		}
+	}
 `;

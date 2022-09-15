@@ -1,13 +1,42 @@
 import styled from 'styled-components';
+import device from '../../config/mediaQueries';
 
 export const MainContainer = styled.div`
 	position: relative;
+	width: 100%;
 
 	.dataContainer {
 		display: flex;
 		gap: 3vw;
 		align-items: center;
 		padding: 0px 0px 15px 15px;
+	}
+
+	@media ${device.mobileL} {
+		height: 500px;
+		margin-bottom: 300px;
+
+		.dataContainer {
+			height: 100%;
+			overflow: scroll;
+
+			.overview {
+				position: absolute;
+				bottom: -60vh;
+				left: 0px;
+				width: 100%;
+			}
+		}
+	}
+
+	@media ${device.mobileS} {
+		margin-bottom: 350px;
+		.overview {
+			position: absolute;
+			bottom: -70vh !important;
+			left: 0px;
+			width: 100%;
+		}
 	}
 `;
 
@@ -19,7 +48,6 @@ export const Background = styled.div`
 	opacity: 0.6;
 	border-radius: 10px;
 
-	background-color: red;
 	background-repeat: no-repeat;
 	background-position: center right;
 	background-size: 100% 100%;
@@ -41,13 +69,22 @@ export const DataContainer = styled.div`
 
 export const List = styled.ul`
 	display: flex;
-	gap: 30px;
+	gap: 10px;
 	list-style: none;
 	font-weight: bolder;
 	padding: 0px;
+	flex-wrap: wrap;
 
 	li {
-		background-color: re;
+		background-color: #b3b3b3;
+		width: fit-content;
+		padding: 2px 10px;
+		border-radius: 10px;
+	}
+
+	@media ${device.mobileL} {
+		flex-direction: column;
+		gap: 10px;
 	}
 `;
 
@@ -55,6 +92,16 @@ export const Section = styled.section`
 	display: flex;
 	position: relative;
 	width: 100%;
+
+	.mainContainer {
+		width: 80%;
+	}
+
+	@media ${device.mobileL} {
+		.mainContainer {
+			width: 100%;
+		}
+	}
 `;
 
 export const SideBar = styled.section`
@@ -70,6 +117,10 @@ export const SideBar = styled.section`
 	p {
 		margin: 0px;
 		margin-bottom: 10px;
+	}
+
+	@media ${device.mobileL} {
+		display: none;
 	}
 `;
 
@@ -104,6 +155,6 @@ export const CollectionContainer = styled.div`
 		display: flex;
 		justify-content: space-around;
 		width: 100%;
-		overflow: hidden;
+		overflow: auto;
 	}
 `;

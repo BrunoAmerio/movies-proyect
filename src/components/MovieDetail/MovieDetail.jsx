@@ -81,14 +81,14 @@ const MovieDetail = () => {
 									<strong>Duración:</strong> {duration}hs
 								</p>
 
-								<p>{detail.overview}</p>
+								<p className='overview'>{detail.overview}</p>
 							</div>
 						</DataContainer>
 					</div>
 				</MainContainer>
 
 				<Section>
-					<div style={{ width: '80%' }}>
+					<div className='mainContainer'>
 						<CrewContainer data={crew} />
 
 						{Object.values(collection).length ? (
