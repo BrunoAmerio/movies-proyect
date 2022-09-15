@@ -3,6 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { InputContainer, Logo, Container } from './styled';
 import searchIcon from '../../assets/search_icon.svg';
+import homeIcon from '../../assets/homeIcon.svg';
 
 const NavBar = () => {
 	const search = e => {
@@ -21,24 +22,15 @@ const NavBar = () => {
 
 	return (
 		<Container style={{}}>
-			{/* <div className='title'>
-				<h1>¡¡Bienvenidos!!</h1>
-				<h3>
-					¿No sabes que ver?... Millones de películas y programas de televisión
-					por descubrir. <br />
-					¡Explora ahora!
-				</h3>
-			</div> */}
-
 			<Logo onClick={goHome}>
-				<p>Logo</p>
+				<Image src={homeIcon} />
 			</Logo>
 
 			<InputContainer>
 				<form onSubmit={search}>
 					<input
 						type='text'
-						placeholder='Busque peliculas o series!'
+						placeholder='Buscar una pelicula o serie'
 						id='search'
 					/>
 

@@ -6,8 +6,9 @@ export const Container = styled.div`
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: #2461fd;
+	background: linear-gradient(270deg, #2461fd 0%, #00c2ff 100%);
 	border-radius: 0px 0px 4px 4px;
+	position: relative;
 
 	.title {
 		width: 50%;
@@ -65,7 +66,7 @@ export const Logo = styled.div`
 	width: 50px;
 	position: absolute;
 	left: 20px;
-	top: 0px;
-	background-color: red;
+	top: 40%;
+	transform: translateY(-50%);
 	cursor: pointer;
 `;

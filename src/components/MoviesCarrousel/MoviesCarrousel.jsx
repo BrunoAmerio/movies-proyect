@@ -19,6 +19,8 @@ const MoviesCarrousel = ({ title, data, redirect }) => {
 			<Container ref={carrousel}>
 				<h2 style={{ textDecoration: 'underline' }}>{title}</h2>
 
+				<div className='background' />
+
 				<motion.div
 					whileTap={{ cursor: 'grabbing' }}
 					className='cardContainer'

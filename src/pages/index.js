@@ -16,7 +16,7 @@ export default function Home() {
 		return (
 			<Container>
 				<div className='presentation'>
-					<h1>¡¡Bienvenido/a!!</h1>
+					<h1>¡Bienvenido/a!</h1>
 					<h3>
 						¿No sabes que ver?... <br />
 						Aquí te econtrarás con millones de películas y programas de
@@ -29,21 +29,17 @@ export default function Home() {
 					</div>
 				</div>
 
-				<div>
-					<MoviesCarrousel
-						title='Peliculas más vistas esta semana'
-						data={mostPopularMovies}
-						redirect={'movie'}
-					/>
-				</div>
+				<MoviesCarrousel
+					title='Peliculas más vistas esta semana'
+					data={mostPopularMovies}
+					redirect={'movie'}
+				/>
 
-				<div style={{ marginTop: 50 }}>
-					<MoviesCarrousel
-						title='Series más vistas esta semana'
-						data={mostPopularTvshow}
-						redirect={'tv'}
-					/>
-				</div>
+				<MoviesCarrousel
+					title='Series más vistas esta semana'
+					data={mostPopularTvshow}
+					redirect={'tv'}
+				/>
 
 				<div style={{ marginTop: 50 }}>
 					<h2 style={{ marginBottom: 0 }}>¿Aún no sabes que ver?</h2>
@@ -72,9 +68,10 @@ const Container = styled.div`
 	.presentation {
 		position: relative;
 		width: 100%;
+		margin-top: 20px;
 		background: linear-gradient(270deg, #2461fd 0%, #00c2ff 100%);
 		padding: 10px 10px 10px 50px;
-		border-radius: 0px 0px 8px 8px;
+		border-radius: 8px;
 		text-align: center;
 
 		h1,

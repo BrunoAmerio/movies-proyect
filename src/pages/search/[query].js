@@ -17,7 +17,7 @@ const SearchPage = () => {
 
 	if (mainArray.length) {
 		return (
-			<div>
+			<div style={{ marginTop: 40 }}>
 				<MoviesContainer>
 					{mainArray.map(item => (
 						<PreviewCard key={item.id} data={item} />
