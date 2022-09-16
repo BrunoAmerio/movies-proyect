@@ -22,7 +22,7 @@ export const MainContainer = styled.div`
 
 			.overview {
 				position: absolute;
-				bottom: -60vh;
+				bottom: -300px;
 				left: 0px;
 				width: 100%;
 				height: 55%;
@@ -156,6 +156,7 @@ export const CollectionContainer = styled.div`
 		display: flex;
 		justify-content: space-around;
 		width: 100%;
-		overflow: auto;
+		overflow-y: hidden;
+		overflow-x: auto;
 	}
 `;
