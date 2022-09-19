@@ -41,6 +41,7 @@ export const SEARCH = async query => {
 			.then(res => res.data.results)
 			.catch(err => console.error(err));
 
+		console.log(result);
 		return result;
 	} catch (error) {
 		return error;

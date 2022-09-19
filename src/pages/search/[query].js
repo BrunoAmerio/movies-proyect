@@ -7,7 +7,7 @@ import PreviewCard from '../../components/PreviewCard/PreviewCard';
 
 const SearchPage = () => {
 	const { query } = useRouter().query;
-	const [mainArray, setMainArray] = useState([]);
+	const [mainArray, setMainArray] = useState(null);
 
 	useEffect(() => {
 		if (query) {
@@ -15,7 +15,7 @@ const SearchPage = () => {
 		}
 	}, [query]);
 
-	if (mainArray.length) {
+	if (mainArray && mainArray.length) {
 		return (
 			<div style={{ marginTop: 40 }}>
 				<MoviesContainer>
@@ -23,6 +23,16 @@ const SearchPage = () => {
 						<PreviewCard key={item.id} data={item} />
 					))}
 				</MoviesContainer>
+			</div>
+		);
+	}
+
+	if (mainArray && !mainArray.length) {
+		return (
+			<div>
+				<h3 style={{ textAlign: 'center' }}>
+					No encontramos nada que coincida con tu consulta
+				</h3>
 			</div>
 		);
 	}
