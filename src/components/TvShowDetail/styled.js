@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import device from '../../config/mediaQueries';
 
 export const SeasonContainer = styled.div`
 	display: flex;
@@ -52,11 +53,17 @@ export const Episodie = styled.div`
 	gap: 25px;
 	text-align: center;
 	margin: auto;
+	width: 100%;
 
 	div {
 		text-align: left;
 	}
+
 	p {
 		margin: 0;
+	}
+
+	@media ${device.tablet} {
+		flex-direction: column;
 	}
 `;

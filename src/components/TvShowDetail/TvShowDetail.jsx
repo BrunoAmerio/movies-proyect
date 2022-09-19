@@ -99,6 +99,7 @@ const TvShowDetail = () => {
 								src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.last_episode_to_air.still_path}`}
 								width={300}
 								height={250}
+								objectFit=''
 								style={{ borderRadius: 10 }}
 							/>
 							<div>
