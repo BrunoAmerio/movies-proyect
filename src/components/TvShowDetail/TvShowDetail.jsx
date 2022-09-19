@@ -2,8 +2,9 @@ import { useRouter } from 'next/router';
 import React from 'react';
 
 import useGetTvDetail from '../../hooks/useGetTvDetail';
+import getDuration from '../../utils/getDuration';
+import getDate from '../../utils/getDate';
 
-// Components
 import {
 	MainContainer,
 	Background,
@@ -11,11 +12,13 @@ import {
 	List,
 	Section,
 	SideBar,
+	CompaniesContainer,
 } from '../MovieDetail/styled';
-import Image from 'next/image';
 import { SeasonContainer, Episodie } from './styled';
+
+// Components
+import Image from 'next/image';
 import Rated from '../Rated/Rated';
-import getDuration from '../../utils/getDuration';
 import CrewContainer from '../CrewContainer/CrewContainer';
 import ReviewContainer from '../ReviewsContainer/ReviewsContainer';
 import MoviesCarrousel from '../MoviesCarrousel/MoviesCarrousel';
@@ -90,7 +93,7 @@ const TvShowDetail = () => {
 					<div className='mainContainer'>
 						<CrewContainer data={crew} />
 
-						<h3 style={{ textAlign: 'center' }}> Ultimo episodio </h3>
+						<h2 style={{ textAlign: 'center' }}> Ultimo episodio </h2>
 						<Episodie>
 							<Image
 								src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}${detail.last_episode_to_air.still_path}`}
@@ -98,25 +101,29 @@ const TvShowDetail = () => {
 								height={250}
 								style={{ borderRadius: 10 }}
 							/>
-							<h3>{detail.last_episode_to_air.name}</h3>
-							<p>
-								<strong>Emitido:</strong> {detail.last_episode_to_air.air_date}
-							</p>
-							<p>
-								{' '}
-								<strong>Temporada:</strong>{' '}
-								{detail.last_episode_to_air.season_number}
-							</p>
-							<p>
-								<strong>Episodio:</strong>{' '}
-								{detail.last_episode_to_air.episode_number}
-							</p>
+							<div>
+								<h3>{detail.last_episode_to_air.name}</h3>
+								<p>
+									<strong>Emitido:</strong>{' '}
+									{getDate(detail.last_episode_to_air.air_date)}
+								</p>
+								<p>
+									{' '}
+									<strong>Temporada:</strong>{' '}
+									{detail.last_episode_to_air.season_number}
+								</p>
+								<p>
+									<strong>Episodio:</strong>{' '}
+									{detail.last_episode_to_air.episode_number}
+								</p>
 
-							<p style={{ marginBottom: 10 }}>
-								<strong>Duracion:</strong>{' '}
-								{getDuration(detail.last_episode_to_air.runtime)}hs
-							</p>
-							<p>{detail.last_episode_to_air.overview}</p>
+								<p>
+									<strong>Duracion:</strong>{' '}
+									{getDuration(detail.last_episode_to_air.runtime)}hs
+								</p>
+
+								<p>{detail.last_episode_to_air.overview}</p>
+							</div>
 						</Episodie>
 
 						<h2>Temporadas</h2>
@@ -147,7 +154,30 @@ const TvShowDetail = () => {
 					</div>
 
 					<SideBar>
-						<p>Status: {detail.status}</p>
+						<p>
+							<strong> Status:</strong> {detail.status}
+						</p>
+
+						<p>
+							<strong>Emitido:</strong> {getDate(detail.first_air_date)}
+						</p>
+
+						<h2>Compañías</h2>
+						<CompaniesContainer>
+							{detail.production_companies.map(item => (
+								<div key={item.id}>
+									{item.logo_path ? (
+										<Image
+											src={`${process.env.NEXT_PUBLIC_IMAGE_LINK}/${item.logo_path}`}
+											height={50}
+											width={100}
+											objectFit='contain'
+										/>
+									) : null}
+									<p>{item.name}</p>
+								</div>
+							))}
+						</CompaniesContainer>
 					</SideBar>
 				</Section>
 			</div>

@@ -8,6 +8,14 @@ export const SeasonContainer = styled.div`
 	max-height: 530px;
 	height: fit-content;
 	scroll-snap-type: x mandatory;
+	background: linear-gradient(
+		90deg,
+		rgba(155, 255, 171) 0%,
+		rgba(155, 255, 171) 0.01%,
+		rgba(1, 209, 255) 100%
+	);
+	padding: 10px 0px;
+	border-radius: 10px;
 
 	.season {
 		width: 250px;
@@ -38,11 +46,16 @@ export const SeasonContainer = styled.div`
 `;
 
 export const Episodie = styled.div`
+	display: flex;
+	width: 500px;
+	align-items: center;
+	gap: 25px;
 	text-align: center;
-	width: 30%;
-	min-width: 300px;
 	margin: auto;
 
+	div {
+		text-align: left;
+	}
 	p {
 		margin: 0;
 	}
