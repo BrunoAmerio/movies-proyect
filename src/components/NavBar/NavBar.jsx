@@ -3,7 +3,7 @@ import React from 'react';
 import Image from 'next/image';
 import { InputContainer, Logo, Container } from './styled';
 import searchIcon from '../../assets/search_icon.svg';
-import homeIcon from '../../assets/homeIcon.svg';
+import logo from '../../assets/logo.svg';
 
 const NavBar = () => {
 	const search = e => {
@@ -23,7 +23,7 @@ const NavBar = () => {
 	return (
 		<Container style={{}}>
 			<Logo onClick={goHome}>
-				<Image src={homeIcon} />
+				<Image src={logo} width={300} height={300} objectFit='contain' />
 			</Logo>
 
 			<InputContainer>
@@ -37,8 +37,8 @@ const NavBar = () => {
 					<button className='searchIcon'>
 						<Image
 							src={searchIcon}
-							width={30}
-							height={30}
+							width={20}
+							height={20}
 							objectFit='contain'
 						/>
 					</button>

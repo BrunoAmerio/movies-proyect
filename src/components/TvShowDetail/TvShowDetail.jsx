@@ -61,7 +61,10 @@ const TvShowDetail = () => {
 								))}
 							</List>
 
-							<div style={{ display: 'flex', alignItems: 'center', gap: 10 }}>
+							<div
+								className='vote'
+								style={{ display: 'flex', alignItems: 'center', gap: 10 }}
+							>
 								<Rated rated={detail.vote_average} fixed={true} />
 								<p>
 									{' '}

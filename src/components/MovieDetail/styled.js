@@ -4,15 +4,17 @@ import device from '../../config/mediaQueries';
 export const MainContainer = styled.div`
 	position: relative;
 	width: 100%;
+	height: 500px;
 
 	.dataContainer {
 		display: flex;
+		height: 100%;
 		gap: 3vw;
 		align-items: center;
 		padding: 0px 0px 15px 15px;
 	}
 
-	@media ${device.mobileL} {
+	@media ${device.tablet} {
 		height: 500px;
 		margin-bottom: 300px;
 
@@ -27,6 +29,14 @@ export const MainContainer = styled.div`
 				width: 100%;
 				height: 55%;
 			}
+		}
+	}
+
+	@media ${device.mobileL} {
+		.vote {
+			position: absolute;
+			bottom: 10vw;
+			left: 10px;
 		}
 	}
 
@@ -77,7 +87,7 @@ export const List = styled.ul`
 	flex-wrap: wrap;
 
 	li {
-		background-color: #b3b3b3;
+		background-color: #e4e4e4;
 		width: fit-content;
 		padding: 2px 10px;
 		border-radius: 10px;
@@ -98,7 +108,7 @@ export const Section = styled.section`
 		width: 80%;
 	}
 
-	@media ${device.mobileL} {
+	@media ${device.tablet} {
 		.mainContainer {
 			width: 100%;
 		}
@@ -120,7 +130,7 @@ export const SideBar = styled.section`
 		margin-bottom: 10px;
 	}
 
-	@media ${device.mobileL} {
+	@media ${device.tablet} {
 		display: none;
 	}
 `;

@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import device from '../../config/mediaQueries';
 
 export const Logo = styled.div`
-	width: 50px;
+	width: 60px;
 	position: absolute;
 	left: 20px;
 	top: 50%;
@@ -10,7 +10,7 @@ export const Logo = styled.div`
 	cursor: pointer;
 
 	@media ${device.mobileL} {
-		width: 25px;
+		width: 35px;
 		position: relative !important;
 		transform: translateY(0%);
 	}
@@ -24,9 +24,9 @@ export const InputContainer = styled.div`
 
 	input {
 		height: 35px;
-		width: 10%;
+		width: 100%;
 		min-width: 200px;
-		padding: 0px 35px 0px 10px;
+		padding: 0px 45px 0px 10px;
 
 		background-color: white;
 		border: none;
@@ -44,8 +44,8 @@ export const InputContainer = styled.div`
 		justify-content: center;
 
 		width: 10%;
-		min-width: 30px;
-		height: 100%;
+		min-width: 40px;
+		height: 103%;
 
 		position: absolute;
 		top: 50%;
